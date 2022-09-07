@@ -45,6 +45,9 @@ class App extends Component {
           <a className='link' href="/.netlify/functions/react-express-ssr">
             Example using React serverside rendering
           </a>
+          <a className='link' href="/paymentGateway">
+            Trying to get a Payment Success Response
+          </a>
         </div>
       </div>
     )
