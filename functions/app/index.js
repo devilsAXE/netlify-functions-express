@@ -14,13 +14,6 @@ export default function expressApp(functionName) {
   // gzip responses
   router.use(compression())
 
-
-   const app = express()
-  const router = express.Router()
-
-  // gzip responses
-  router.use(compression())
-
   // Set router base path for local dev
   const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`
 
