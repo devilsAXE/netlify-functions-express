@@ -15,8 +15,17 @@ export default function expressApp(functionName) {
   router.use(compression())
 
 
+   const app = express()
+  const router = express.Router()
+
+  // gzip responses
+  router.use(compression())
+
+  // Set router base path for local dev
+  const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`
+
   /* define routes */
-  router.get('/paymentGateway', (req, res) => {
+  router.get('/', (req, res) => {
     const html = `
     <html>
       <head>
@@ -28,31 +37,23 @@ export default function expressApp(functionName) {
       </head>
       <body>
         <h1>Express via '${functionName}' ⊂◉‿◉つ</h1>
-
         <p>I'm using Express running via a <a href='https://www.netlify.com/docs/functions/' target='_blank'>Netlify Function</a>.</p>
-
         <p>Choose a route:</p>
-
         <div>
-          <a href='/users'>View /users route</a>
+          <a href='/.netlify/functions/${functionName}/users'>View /users route</a>
         </div>
-
         <div>
-          <a href='/hello'>View /hello route</a>
+          <a href='/.netlify/functions/${functionName}/hello'>View /hello route</a>
         </div>
-
         <br/>
         <br/>
-
         <div>
           <a href='/'>
             Go back to demo homepage
           </a>
         </div>
-
         <br/>
         <br/>
-
         <div>
           <a href='https://github.com/DavidWells/netlify-functions-express' target='_blank'>
             See the source code on github
@@ -76,19 +77,6 @@ export default function expressApp(functionName) {
       ],
     })
   })
-  
-  router.get('/', (req, res) => {
-    res.json({
-      users: [
-        {
-          name: 'steve',
-        },
-        {
-          name: 'joe',
-        },
-      ],
-    })
-  })
 
   router.get('/hello/', function(req, res) {
     res.send('hello world')
@@ -98,7 +86,7 @@ export default function expressApp(functionName) {
   app.use(morgan(customLogger))
 
   // Setup routes
-  app.use('/.netlify/functions', router)
+  app.use(routerBasePath, router)
 
   // Apply express middlewares
   router.use(cors())
