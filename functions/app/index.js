@@ -60,7 +60,7 @@ export default function expressApp(functionName) {
 
   router.post('/paymentGateway', (req, res) => {
     console.log(req.body);
-    res.status(201).json({ status: "STATUS_SUCCESS"});
+    res.status(200).json({ status: "STATUS_SUCCESS"});
   })
 
   router.get('/hello/', function(req, res) {
