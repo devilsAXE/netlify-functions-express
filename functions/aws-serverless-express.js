@@ -4,7 +4,7 @@ import binaryMimeTypes from './utils/binaryMimeTypes'
 import expressApp from './app'
 
 // We need to define our function name for express routes to set the correct base path
-const functionName = 'aws-serverless-express'
+const functionName = 'payment'
 
 // Initialize express app
 const app = expressApp(functionName)
