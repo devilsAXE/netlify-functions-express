@@ -76,6 +76,19 @@ export default function expressApp(functionName) {
       ],
     })
   })
+  
+  router.get('/', (req, res) => {
+    res.json({
+      users: [
+        {
+          name: 'steve',
+        },
+        {
+          name: 'joe',
+        },
+      ],
+    })
+  })
 
   router.get('/hello/', function(req, res) {
     res.send('hello world')
@@ -85,7 +98,7 @@ export default function expressApp(functionName) {
   app.use(morgan(customLogger))
 
   // Setup routes
-  app.use('/', router)
+  app.use('/.netlify/functions', router)
 
   // Apply express middlewares
   router.use(cors())
