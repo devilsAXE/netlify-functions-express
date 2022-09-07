@@ -13,7 +13,7 @@ const router = express.Router()
 
 /* We need to set our base path for express to match on our function route */
 const functionName = 'standalone-aws-serverless-express-example'
-const basePath = `/.netlify/functions/${functionName}/`
+const basePath = `/paymentGateway/`
 
 router.use(compression())
 
