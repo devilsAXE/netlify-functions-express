@@ -33,7 +33,7 @@ export default function expressApp(functionName) {
         <p>I'm using Express running via a <a href='https://www.netlify.com/docs/functions/' target='_blank'>Netlify Function</a>.</p>
         <p>Choose a route:</p>
         <div>
-          <a href='/.netlify/functions/${functionName}/paymentGateway'>PAYMENT SESSION /users route</a>
+          <a href='/.netlify/functions/${functionName}/paymentGateway'>payment gateway /paymentGateway route</a>
         </div>
         <div>
           <a href='/.netlify/functions/${functionName}/hello'>View /hello route</a>
