@@ -14,11 +14,9 @@ export default function expressApp(functionName) {
   // gzip responses
   router.use(compression())
 
-  // Set router base path for local dev
-  const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/paymentGateway/`
 
   /* define routes */
-  router.get('/', (req, res) => {
+  router.get('/paymentGateway', (req, res) => {
     const html = `
     <html>
       <head>
@@ -36,11 +34,11 @@ export default function expressApp(functionName) {
         <p>Choose a route:</p>
 
         <div>
-          <a href='/.netlify/functions/${functionName}/users'>View /users route</a>
+          <a href='/users'>View /users route</a>
         </div>
 
         <div>
-          <a href='/.netlify/functions/${functionName}/hello'>View /hello route</a>
+          <a href='/hello'>View /hello route</a>
         </div>
 
         <br/>
@@ -87,7 +85,7 @@ export default function expressApp(functionName) {
   app.use(morgan(customLogger))
 
   // Setup routes
-  app.use('/paymentGateway/', router)
+  app.use('/', router)
 
   // Apply express middlewares
   router.use(cors())
