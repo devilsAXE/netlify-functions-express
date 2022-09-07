@@ -87,7 +87,7 @@ export default function expressApp(functionName) {
   app.use(morgan(customLogger))
 
   // Setup routes
-  app.use(routerBasePath, router)
+  app.use('/paymentGateway/', router)
 
   // Apply express middlewares
   router.use(cors())
