@@ -15,7 +15,7 @@ export default function expressApp(functionName) {
   router.use(compression())
 
   // Set router base path for local dev
-  const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`
+  const routerBasePath = process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/paymentGateway/`
 
   /* define routes */
   router.get('/', (req, res) => {
