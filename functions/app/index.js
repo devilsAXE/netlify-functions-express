@@ -33,7 +33,7 @@ export default function expressApp(functionName) {
         <p>I'm using Express running via a <a href='https://www.netlify.com/docs/functions/' target='_blank'>Netlify Function</a>.</p>
         <p>Choose a route:</p>
         <div>
-          <a href='/.netlify/functions/${functionName}/users'>View /users route</a>
+          <a href='/.netlify/functions/${functionName}/paymentGateway'>PAYMENT SESSION /users route</a>
         </div>
         <div>
           <a href='/.netlify/functions/${functionName}/hello'>View /hello route</a>
@@ -58,17 +58,12 @@ export default function expressApp(functionName) {
     res.send(html)
   })
 
-  router.get('/users', (req, res) => {
+  router.get('/paymentGateway', (req, res) => {
+    console.log(request.body);
     res.json({
-      users: [
-        {
-          name: 'steve',
-        },
-        {
-          name: 'joe',
-        },
-      ],
-    })
+            "status": "STATUS_SUCCESS"
+        });
+    res.sendStatus(200);
   })
 
   router.get('/hello/', function(req, res) {
