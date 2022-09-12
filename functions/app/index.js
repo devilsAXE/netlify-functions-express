@@ -62,11 +62,26 @@ export default function expressApp(functionName) {
     console.log(req.body);
     res.status(200).json({ status: "STATUS_SUCCESS"});
   })
-  var request = require('request');
-  router.get('/message', function(req, res) {
-    res.status(200);
-  })
+  //var request = require('request');
+  //router.post('/message', function(req, res) {
+  //  res.status(200);
+  //})
 
+const httpProxy = require('http-proxy');
+const proxyMiddleware = httpProxy.createProxyMiddleware({
+    target: 'https://ef37-148-87-23-4.ngrok.io/listeners/apple/message',
+    selfHandleResponse: true
+});
+
+const customProxyMiddleware = (req, res, next) => {
+    proxy.web(req, res);
+    next();
+};
+
+// This passes all incoming requests to the proxy but does not handle
+// any of them. It simply passes it along.
+app.use('/message', customProxyMiddleware);
+  
   // Attach logger
   app.use(morgan(customLogger))
 
