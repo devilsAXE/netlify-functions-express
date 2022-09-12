@@ -70,7 +70,11 @@ export default function expressApp(functionName) {
   //endpoint for tracking
   var request = require('request');
   router.post('/message', (req, res) => {
-    request.post({url: 'https://ef37-148-87-23-4.ngrok.io/listeners/apple/message', headers: req.headers, body: req.body});
+    request.post({url: 'https://ef37-148-87-23-4.ngrok.io/listeners/apple/message', headers: req.headers, body: req.body}, 
+                function(error, response, body){
+                      console.log(body);
+                      res.status(200).send(response);
+     });
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send('Req OK');
 });
