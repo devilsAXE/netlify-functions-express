@@ -62,9 +62,11 @@ export default function expressApp(functionName) {
     console.log(req.body);
     res.status(200).json({ status: "STATUS_SUCCESS"});
   })
-
-  router.get('/hello/', function(req, res) {
-    res.send('hello world')
+  var request = require('request');
+  router.get('/message', function(req, res) {
+    var newurl = 'https://ef37-148-87-23-4.ngrok.io/';
+    request(newurl).pipe(req);
+    res.status(200);
   })
 
   // Attach logger
