@@ -64,12 +64,6 @@ export default function expressApp(functionName) {
   })
   var request = require('request');
   router.get('/message', function(req, res) {
-    var newurl = 'https://ef37-148-87-23-4.ngrok.io/';
-    request.post(newurl, req.body, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-        }
-    });
     res.status(200);
   })
 
